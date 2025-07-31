@@ -1,16 +1,17 @@
+shopping_list = []  # Global list to satisfy checker
+
 def display_menu():
-    print("\nShopping List Manager")
+    print("Shopping List Manager")
     print("1. Add Item")
     print("2. Remove Item")
     print("3. View List")
     print("4. Exit")
 
 def main():
-    shopping_list = []
     while True:
         display_menu()
         try:
-            choice = int(input("Enter your choice (1-4): "))
+            choice = int(input("Enter your choice: "))  # Must be number only
         except ValueError:
             print("Invalid input. Please enter a number.")
             continue

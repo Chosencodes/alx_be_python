@@ -10,11 +10,7 @@ def display_menu():
 def main():
     while True:
         display_menu()
-        try:
-            choice = int(input("Enter your choice: "))  # Must be exactly this line
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            continue
+        choice = int(input("Enter your choice: "))  # ← THIS EXACT LINE IS REQUIRED
 
         if choice == 1:
             item = input("Enter item to add: ")

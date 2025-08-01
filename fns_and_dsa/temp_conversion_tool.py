@@ -1,29 +1,32 @@
-# Global conversion constants
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
+# Global conversion factors
 FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
-FREEZING_POINT_C = 32
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
 
-# Convert Celsius to Fahrenheit
-def to_fahrenheit(celsius):
-    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FREEZING_POINT_C
+def convert_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
 
-# Convert Fahrenheit to Celsius
-def to_celsius(fahrenheit):
-    return (fahrenheit - FREEZING_POINT_C) * FAHRENHEIT_TO_CELSIUS_FACTOR
+def convert_to_fahrenheit(celsius):
+    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + 32
 
-# Main interaction
-try:
-    temp = float(input("Enter the temperature to convert: "))
-    unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+def main():
+    try:
+        temp_input = input("Enter the temperature to convert: ").strip()
+        temperature = float(temp_input)  # Will raise ValueError if not numeric
 
-    if unit == "C":
-        converted = to_fahrenheit(temp)
-        print(f"{temp}°C is {converted:.2f}°F")
-    elif unit == "F":
-        converted = to_celsius(temp)
-        print(f"{temp}°F is {converted:.2f}°C")
-    else:
-        print("Invalid unit. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
-except ValueError:
-    print("Invalid temperature input. Please enter a numeric value.")
+        unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+
+        if unit == "F":
+            result = convert_to_celsius(temperature)
+            print(f"{temperature}°F is {result}°C")
+        elif unit == "C":
+            result = convert_to_fahrenheit(temperature)
+            print(f"{temperature}°C is {result}°F")
+        else:
+            raise ValueError("Invalid temperature unit. Please enter 'C' or 'F'.")
+
+    except ValueError:
+        print("Invalid temperature. Please enter a numeric value.")
+
+if __name__ == "__main__":
+    main()
 

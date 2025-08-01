@@ -1,31 +1,29 @@
-# Global conversion factors
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+# Global conversion constants
 CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+FREEZING_POINT_C = 32
 
-def convert_to_celsius(fahrenheit):
-    return (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
+# Convert Celsius to Fahrenheit
+def to_fahrenheit(celsius):
+    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FREEZING_POINT_C
 
-def convert_to_fahrenheit(celsius):
-    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + 32
+# Convert Fahrenheit to Celsius
+def to_celsius(fahrenheit):
+    return (fahrenheit - FREEZING_POINT_C) * FAHRENHEIT_TO_CELSIUS_FACTOR
 
-def main():
-    try:
-        temp_input = input("Enter the temperature to convert: ").strip()
-        temperature = float(temp_input)  # This will raise ValueError if not a number
+# Main interaction
+try:
+    temp = float(input("Enter the temperature to convert: "))
+    unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
 
-        unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
-        if unit == 'F':
-            celsius = convert_to_celsius(temperature)
-            print(f"{temperature}°F is {celsius}°C")
-        elif unit == 'C':
-            fahrenheit = convert_to_fahrenheit(temperature)
-            print(f"{temperature}°C is {fahrenheit}°F")
-        else:
-            print("Invalid unit. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
-    except ValueError:
-        print("Invalid temperature. Please enter a numeric value.")
-
-if __name__ == "__main__":
-    main()
-
+    if unit == "C":
+        converted = to_fahrenheit(temp)
+        print(f"{temp}°C is {converted:.2f}°F")
+    elif unit == "F":
+        converted = to_celsius(temp)
+        print(f"{temp}°F is {converted:.2f}°C")
+    else:
+        print("Invalid unit. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
+except ValueError:
+    print("Invalid temperature input. Please enter a numeric value.")
 

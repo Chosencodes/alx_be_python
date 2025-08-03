@@ -15,4 +15,3 @@ class SimpleCalculator:
             return None
         return a / b
 
-

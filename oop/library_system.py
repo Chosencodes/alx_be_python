@@ -1,5 +1,3 @@
-# library_system.pyghjjj
-
 class Book:
     """Base Book class with title and author."""
     def __init__(self, title, author):

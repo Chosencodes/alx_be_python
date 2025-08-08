@@ -1,22 +1,18 @@
 class Book:
-    """A simple Book class demonstrating magic methods:
-    - __init__ (constructor)
-    - __del__ (destructor)
-    - __str__ and __repr__ (string representations)
-    """
-    def __init__(self, title: str, author: str, year: int):
+    def __init__(self, title, author, year):
+        """Constructor to initialize a Book instance."""
         self.title = title
         self.author = author
-        self.year = int(year)
-
-    def __str__(self) -> str:
-        # User-friendly string representation
-        return f"{self.title} by {self.author}, published in {self.year}"
-
-    def __repr__(self) -> str:
-        # Official representation that could recreate the object
-        return f"Book('{self.title}', '{self.author}', {self.year})"
+        self.year = year
 
     def __del__(self):
-        # Called on object deletion
+        """Destructor to print message when object is deleted."""
         print(f"Deleting {self.title}")
+
+    def __str__(self):
+        """Informal string representation."""
+        return f"{self.title} by {self.author}, published in {self.year}"
+
+    def __repr__(self):
+        """Official string representation that can recreate the object."""
+        return f"Book('{self.title}', '{self.author}', {self.year})"
